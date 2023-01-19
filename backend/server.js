@@ -5,12 +5,15 @@ const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 const userRoute = require('./routes/userRoute');
 const errorMiddleware = require('./middleware/errorMiddleware');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 //middlwares
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors())
 
 //routes middleware
 app.use('/api/users', userRoute);
